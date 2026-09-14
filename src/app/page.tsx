@@ -19,33 +19,7 @@ export default function Home() {
     );
   });
 
-  // Envio inteligente: no celular tenta compartilhar com a imagem real anexada
-  const handlePedirWhatsApp = async (item: ChineloItem) => {
-    const directUrl = getWhatsAppLink(item);
 
-    // Se o dispositivo suportar compartilhamento nativo de arquivo (Android / iOS)
-    if (typeof navigator !== 'undefined' && navigator.share && navigator.canShare) {
-      try {
-        const response = await fetch(item.image);
-        const blob = await response.blob();
-        const file = new File([blob], `chinelo-${item.id}.jpeg`, { type: 'image/jpeg' });
-
-        if (navigator.canShare({ files: [file] })) {
-          await navigator.share({
-            title: item.name,
-            text: `Olá! Tenho interesse no chinelo *${item.name}* (Código: #${item.id}) no valor de R$ ${item.price.toFixed(2).replace('.', ',')}.`,
-            files: [file],
-          });
-          return;
-        }
-      } catch (err) {
-        console.log('Fallback para link direto:', err);
-      }
-    }
-
-    // Fallback padrão: abre o WhatsApp com a mensagem formatada e código exato
-    window.open(directUrl, '_blank', 'noopener,noreferrer');
-  };
 
   return (
     <div className="min-h-screen bg-[#0d1117] text-white flex flex-col">
@@ -165,14 +139,16 @@ export default function Home() {
                   </div>
 
                   {/* Botão de WhatsApp */}
-                  <button
-                    onClick={() => handlePedirWhatsApp(item)}
+                  <a
+                    href={getWhatsAppLink(item)}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-full py-2 px-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-1.5 transition-colors active:scale-95"
-                    title={`Pedir modelo #${item.id} no WhatsApp`}
+                    title={`Pedir chinelo número ${item.id} no WhatsApp`}
                   >
                     <MessageCircle className="w-3.5 h-3.5 fill-slate-950 text-emerald-500" />
                     <span>Pedir no WhatsApp</span>
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -221,13 +197,16 @@ export default function Home() {
                 </p>
               </div>
 
-              <button
-                onClick={() => handlePedirWhatsApp(fotoAmpliada)}
+              <a
+                href={getWhatsAppLink(fotoAmpliada)}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs sm:text-sm flex items-center gap-1.5 flex-shrink-0"
+                title={`Pedir chinelo número ${fotoAmpliada.id} no WhatsApp`}
               >
                 <MessageCircle className="w-4 h-4 fill-slate-950 text-emerald-500" />
                 <span>Pedir no WhatsApp</span>
-              </button>
+              </a>
             </div>
           </div>
         </div>

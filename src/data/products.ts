@@ -10,18 +10,18 @@ export const STORE_INFO = {
   name: 'Estilo nos Péz',
   whatsappNumber: '5563999145241',
   whatsappDisplay: '(63) 99914-5241',
-  instagram: '@estilonospez',
-  instagramUrl: 'https://instagram.com/estilonospez',
+  instagram: '@estilo_nos_pez',
+  instagramUrl: 'https://www.instagram.com/estilo_nos_pez/',
 };
 
 export function getWhatsAppLink(item?: ChineloItem): string {
-  const baseNumber = STORE_INFO.whatsappNumber.replace(/\D/g, '');
+  const baseNumber = '5563999145241';
   if (!item) {
     return `https://wa.me/${baseNumber}?text=${encodeURIComponent(
       `Olá! Gostaria de tirar dúvidas sobre os chinelos da ${STORE_INFO.name}.`
     )}`;
   }
-  const message = `Olá! Tenho interesse no chinelo:\n• *Código:* #${item.id}\n• *Modelo:* ${item.name}\n• *Valor:* R$ ${item.price.toFixed(2).replace('.', ',')}\n\nPoderia me confirmar a disponibilidade desse modelo?`;
+  const message = `Olá! Tenho interesse no chinelo número ${item.id} (${item.name}) no valor de R$ ${item.price.toFixed(2).replace('.', ',')}. Ainda está disponível?`;
   return `https://wa.me/${baseNumber}?text=${encodeURIComponent(message)}`;
 }
 
