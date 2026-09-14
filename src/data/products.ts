@@ -11,7 +11,7 @@ export const STORE_INFO = {
   whatsappNumber: '5563999145241',
   whatsappDisplay: '(63) 99914-5241',
   instagram: '@estilo_nos_pez',
-  instagramUrl: 'https://www.instagram.com/estilo_nos_pez/',
+  instagramUrl: 'https://www.instagram.com/estilo_nos_pez?stkn=MTl2bHZuczV5M2xnOQ%3D%3D&utm_source=qr',
 };
 
 export function getWhatsAppLink(item?: ChineloItem): string {
