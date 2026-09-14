@@ -1,0 +1,12 @@
+PASTA DE IMAGENS DOS CHINELOS:
+
+As fotos estão salvas e prontas nesta pasta:
+public/chinelos/
+
+Arquivos disponíveis:
+- modelo-01.jpeg até modelo-19.jpeg
+
+No código do catálogo, cada imagem é chamada simplesmente como:
+/chinelos/modelo-01.jpeg
+/chinelos/modelo-02.jpeg
+etc.
